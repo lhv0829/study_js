@@ -1,7 +1,22 @@
 import { getProductCard } from "./module/productCard.js";
+import { getProductList } from "./module/productList.js";
+import { fetchSectionListData } from "./module/fetch.js";
+import { setButtonEvent, setFilterEvent } from "./module/productFilter.js";
 
-const sectionDOM = document.getElementsByTagName('section')[0];
+const sectionInfoList = await fetchSectionListData();
 
+const productList = sectionInfoList.reduce((prev, curr) => [...prev, ...curr.productList], []);
+
+const section = document.getElementsByTagName('section')[0];
+const ProductListDOM = getProductList(productList);
+section.appendChild(ProductListDOM);
+
+setFilterEvent();
+setButtonEvent(productList);
+
+
+// //수정 전 버전
+// const sectionDOM = document.getElementsByTagName('section')[0];
 // const productCard = makeDOMwithProperties('div', {
 //   className: 'product-card',
 // });
@@ -55,23 +70,24 @@ const sectionDOM = document.getElementsByTagName('section')[0];
 
 // appendChildrenList(productCard, [productImageCon, productDescription]);
 
-const productCard = getProductCard({
-  "id": 1,
-  "imgSrc": "/js_basic_market/public/assets/파프리카.jpg",
-  "name": "파프리카 2입",
-  "discountPercent": 20,
-  "price": 2000,
-  "originalPrice": 2500
-});
+// // 수정 전 버전
+// const productCard = getProductCard({
+//   "id": 1,
+//   "imgSrc": "/js_basic_market/public/assets/파프리카.jpg",
+//   "name": "파프리카 2입",
+//   "discountPercent": 20,
+//   "price": 2000,
+//   "originalPrice": 2500
+// });
 
-const productCard2 = getProductCard({
-  "id": 2,
-  "imgSrc": "/js_basic_market/public/assets/당근.jpg",
-  "name": "친환경 당근 400g",
-  "discountPercent": 33,
-  "price": 2000,
-  "originalPrice": 3000
-});
+// const productCard2 = getProductCard({
+//   "id": 2,
+//   "imgSrc": "/js_basic_market/public/assets/당근.jpg",
+//   "name": "친환경 당근 400g",
+//   "discountPercent": 33,
+//   "price": 2000,
+//   "originalPrice": 3000
+// });
 
-sectionDOM.appendChild(productCard);
-sectionDOM.appendChild(productCard2);
+// sectionDOM.appendChild(productCard);
+// sectionDOM.appendChild(productCard2);
