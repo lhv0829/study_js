@@ -34,6 +34,9 @@ const clearArrowDOM = () => {
 };
 
 const setArrowDOM = () => {
+  // 1. 기존에 존재하고 있던 arrowDOM이 있으면 삭제
+  // 2. 새로 DOM을 만들어서 세팅
+  // 3. 랜덤으로 왼쪽, 오른쪽을 결정
   clearArrowDOM();
   for(let i=0; i<MAX_ARROW; i++) {
     const direction = Math.random() > 0.5 ? 'left': 'right';
@@ -47,12 +50,18 @@ const setArrowDOM = () => {
 };
 
 const setKeyboardEvent = () => {
+  // 이벤트 핸들러 등록 -> keydown
+  // 왼쪽 방향키 || 오른쪽 방향키가 클릭되면
+  // 현재 눌러져야 할 방향키 방향과 같다면 실행
   const handleCorrect = () => {
+    // 방향키 DOM을 안보이게 만들어야 함
+    // currentIndex++;
+    // 모든 방향키가 다 눌렀다면 다음 라운드로 진행
     arrowDOMList[currentIndex].style.display = 'none';
     currentIndex++;
     if (currentIndex === MAX_ARROW) {
       if (round === MAX_ROUND) {
-        handleSuccessGame();
+        handleSuccessGame(); // 게임 종료
       }
       currentIndex = 0;
       setArrowDOM();
@@ -84,6 +93,7 @@ const onArrowSpeedGameEnd = () => {
 };
 
 const initializeArrowSpeedGame = () => {
+  // retryButton에 timer 세팅과 상태 원복 코드를 삽입
   const headerRetryButton = document.getElementsByClassName('retry-button')[0];
   const modalButtonContainer = document.getElementsByClassName('modal-button-container')[0];
   const [homeAnchorButton, retryButton] = modalButtonContainer.children;

@@ -34,12 +34,19 @@ const handleFailedGame = () => {
 };
 
 const setButtonDOM = () => {  
+  // 1. HTML 상에서 domList를 받아옴
+  // 2. 순회하면서 dom의 위치를 조정(랜덤으로)
+  // 3. dom 클릭 시 핸들러 등록
   for(let numberButton of numberButtonList) {
     const top = Math.floor(Math.random() * 100 * 0.9);
     const left = Math.floor(Math.random() * 100 * 0.9);
     numberButton.style.top = `${top}%`;
     numberButton.style.left = `${left}%`;
     numberButton.onclick = (event) => {
+      // 1. 클릭한 수를 찾아오기
+      // 2. 수가 현재 클릭되어야 하는 순서가 맞는 지 판단 -> 아니라면 무시, 맞다면 해당 numberButton을 없앰
+      // 3. 1을 클릭했을 때는 타이머 시작
+      // 4. 10을 클릭했을 때는 타이머 멈춤 -> 성공 모달
       const numId = Number(event.target.innerHTML);
       if (isNaN(numId)) return;
       if (numId === 1) {
@@ -66,6 +73,8 @@ const onTouchNumberGameEnd = () => {
 };
 
 const initializeTouchNumberGame = () => {
+  // modal - retry, header - retry 세팅
+  // 클릭 시 모달 닫기, 상태를 원복
   const headerRetryButton = document.getElementsByClassName('retry-button')[0];
   const modalButtonContainer = document.getElementsByClassName('modal-button-container')[0];
   const [, retryButton] = modalButtonContainer.children;

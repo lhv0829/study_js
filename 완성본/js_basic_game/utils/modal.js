@@ -7,10 +7,10 @@ export const handleModalOpen = ({
   timeString, // '' | undefined
 }) => {
   modal.classList.add('open');
-  if (isSuccess) {
+  if (isSuccess) { // 성공
     modalTitle.innerHTML = '성공!';
     modalDescription.innerHTML = `${timeString}만에 성공하였습니다!`;
-  }else {
+  }else { // 실패
     modalTitle.innerHTML = '실패!';
     modalDescription.innerHTML = '다시 시도해보세요~!';
   }
