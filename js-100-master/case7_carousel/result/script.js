@@ -11,9 +11,9 @@
       this.itemClassName = 'carousel_item'
       this.items = this.carouselElement.querySelectorAll('.carousel_item')
 
-      this.totalItems = this.items.length
+      this.totalItems = this.items.length // 유사배열 객체로 가져와서 해당 객체의 length를 통해 개수 가져오기
       this.current = 0
-      this.isMoving = false
+      this.isMoving = false // true인 경우 버튼을 눌러도 이벤트가 동작하지 않게
     }
 
     initCarousel() {
@@ -48,7 +48,7 @@
     }
 
     moveCarouselTo() {
-      if (!this.isMoving) {
+      if (!this.isMoving) { // if(this.isMoving) return; else { 코드 } 랑 같은 경우
         this.disableInteraction()
 
         let prev = this.current - 1

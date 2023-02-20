@@ -3,7 +3,7 @@ import { initBoxState, setBoxDom } from "./module/mouseControlModule.js";
 import { stopTimer, setTimer } from "./utils/timer.js";
 
 const onMouseControlGameEnd = () => {
-  stopTimer();
+  stopTimer(); // 타이머가 멈추고
   setTimer(0);
   initBoxState();
 };
@@ -14,6 +14,13 @@ const initializeMouseControlGame = () => {
   const [, retryButton] = modalButtonContainer.children;
   retryButton.onclick = () => handleModalClose(onMouseControlGameEnd);
 };
+
+/* const initialize = () => {
+  // modal의 버튼을 세팅
+  // retryButton에 게임 상태를 원복하는 함수를 실행
+  const retryButton = document.getElementsByClassName('retry-button')[0];
+  retryButton.onclick = () => handleModalClose(onMouseControlGameEnd);
+}; */
 
 export const gameField = document.getElementById('game-field');
 setBoxDom({
